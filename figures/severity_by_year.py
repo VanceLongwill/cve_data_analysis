@@ -14,7 +14,6 @@ def relative_freqs(x):
     s = np.nansum(values)
     return [v/s for v in values]
 
-
 def severity_by_year(df: pd.DataFrame):
     grouped = df.groupby(['Year', 'SEVERITY'], dropna=False).sum()
     # pivot the data to have each severity as a column
@@ -27,7 +26,7 @@ def severity_by_year(df: pd.DataFrame):
     # calculate the relative frequencies of each severity in each row (year)
     pivoted = pivoted.apply(relative_freqs, axis=1, result_type='broadcast')
     # grab the latest 10 years of data
-    last_10_years = pivoted.tail(10)
+    last_10_years = pivoted
 
     # plot as bar graph
     bg = last_10_years.plot(kind='bar', color={
